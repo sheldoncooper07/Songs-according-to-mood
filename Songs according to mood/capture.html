@@ -1,0 +1,60 @@
+<!DOCTYPE html5>
+<html>
+<head>
+  <title>
+    Record Images
+  </title>
+  <style>
+    .booth{
+      width: 400px;
+      background-color: #ccc;
+      border:10px solid  #ddd;
+      margin: 0 auto;  
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class='booth'>
+      <video id='capture' width="400" height="300" autoplay="true"> </video> 
+      <a href="#" id="capture_btn" class="btn1"><button> Take Photo </button> </a>
+
+      <canvas style="display: none;" id="canvas" width="400" height="300"></canvas>
+      <input id='ph' style="display: none;" type="image" src="#" alt="Submit" width="400" height="400">
+  </div>
+
+<script  type="text/javascript" >
+	
+	
+		
+	var video = document.querySelector("#capture"),
+		canvas = document.querySelector('#canvas'),
+		context= canvas.getContext('2d'),
+		photo= document.getElementById('ph');
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (error) {
+      console.log("Something went wrong!");
+    });
+}
+
+document.getElementById('capture_btn').addEventListener('click',function(){
+		context.drawImage(video,0,0,400,300);
+		if (ph.getAttribute('src') == '#') {
+		ph.setAttribute('src',canvas.toDataURL('image/png'))
+		ph.style.display='block'
+		}
+		else {
+			ph.setAttribute('src',canvas.toDataURL('image/png'))
+		}
+	});
+
+
+</script>
+
+</body>
+</html>
